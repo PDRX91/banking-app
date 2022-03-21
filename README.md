@@ -1,1 +1,1 @@
-# banking-app
+# Full Stack Banking App
