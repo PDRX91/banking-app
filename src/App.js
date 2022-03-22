@@ -1,5 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
+
+import Header from "./components/header";
+import TodoContainer from "./components/todoContainer";
 import "./App.css";
 
 function App() {
@@ -13,16 +15,14 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
+
+  const todoData = [{ text: "todo 1" }, { text: "todo 2" }];
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload!
-        </p>
-        <button className="App-link" onClick={onClick}>
-          Learn React
-        </button>
+        <Header user="Ted" />
+        <TodoContainer todos={todoData}>Learn React</TodoContainer>
       </header>
     </div>
   );
