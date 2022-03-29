@@ -16,29 +16,27 @@
 
 .todo-box-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .todo-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 500px;
+  min-width: 1200px;
 }
 
 .todo-text {
   margin: 4px 0;
 }
 
-.todo-button {
-  margin: 4px;
-}
-
 .btn {
   border: 3px solid transparent;
   border-radius: 8px;
-  background-color: cyan;
+  background-color: rgb(17, 55, 167);
   color: white;
   padding: 10px 20px;
+  min-width: 100px;
+  margin: 0 4px;
 }
 
 .btn-green {
@@ -60,4 +58,21 @@
   background-color: white;
   border-color: yellow;
   color: black;
+}
+
+.input-container {
+  width: 600px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input {
+  flex-grow: 1;
+  height: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
 }

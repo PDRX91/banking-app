@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Todo from "./todo";
+import TodoInput from "./todoInput";
 
 const TodoContainer = (props) => {
-  const todos = props.todos.map((todo, idx) => {
-    return <Todo text={todo.text} />;
-  });
+  const [todos, setTodos] = useState(props.todos);
+
+  const addTodo = (text) => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
   return (
     <div className="todo-container">
       <div className="todo-box-header">
-        <h3>Add a todo!</h3>
-        <input />
+        <TodoInput addTodo={addTodo} />
       </div>
-      {todos}
+      {todos.map((todo, idx) => {
+        return <Todo text={todo.text} key={idx} />;
+      })}
     </div>
   );
 };
