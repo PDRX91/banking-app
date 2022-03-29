@@ -11,14 +11,26 @@ const Todo = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div className="todo-wrapper">
       <p className="todo-text">{props.text}</p>
       <div className="todo-btn-wrapper">
-        <button className="btn todo-button btn-green" onClick={onClick}>
-          Mark as complete
+        <button
+          className={`btn todo-button btn-green ${
+            props.isCompleted ? "disabled" : ""
+          }`}
+          onClick={() => props.handleComplete(props.id)}
+          disabled={props.isCompleted}
+        >
+          {`${props.isCompleted ? "Completed" : "Mark as complete"}`}
         </button>
-        <button className="btn todo-button btn-yellow">Edit</button>
+        <button
+          className="btn todo-button btn-yellow"
+          onClick={() => props.handleDelete()}
+        >
+          Edit
+        </button>
       </div>
     </div>
   );
