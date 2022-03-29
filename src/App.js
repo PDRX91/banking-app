@@ -7,8 +7,8 @@ import getRandomInt from "./utils/math";
 
 function App() {
   const todoData = [
-    { text: "todo 1", isCompleted: false, id: getRandomInt(250000) },
-    { text: "todo 2", isCompleted: false, id: getRandomInt(250000) },
+    // { text: "todo 1", isCompleted: false, id: getRandomInt(250000) },
+    // { text: "todo 2", isCompleted: false, id: getRandomInt(250000) },
   ];
 
   return (

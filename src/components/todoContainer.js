@@ -16,14 +16,22 @@ const TodoContainer = (props) => {
 
   const handleComplete = (id) => {
     const newTodos = todos.map((todo) => {
-      // console.log(todo);
       if (todo.id === id) {
         return { ...todo, isCompleted: true };
       }
       return todo;
     });
     setTodos(newTodos);
-    // console.log("Todo to be completed:", todos[id]);
+  };
+
+  const handleDelete = (id) => {
+    const newTodos = todos.filter((todo) => {
+      if (todo.id === id) {
+        return false;
+      }
+      return true;
+    });
+    setTodos(newTodos);
   };
 
   return (
@@ -31,14 +39,15 @@ const TodoContainer = (props) => {
       <div className="todo-box-header">
         <TodoInput addTodo={addTodo} />
       </div>
-      {todos.map((todo, idx) => {
+      {todos.map((todo) => {
         return (
           <Todo
             text={todo.text}
-            key={idx}
+            key={todo.id}
             id={todo.id}
             isCompleted={todo.isCompleted}
             handleComplete={handleComplete}
+            handleDelete={handleDelete}
           />
         );
       })}

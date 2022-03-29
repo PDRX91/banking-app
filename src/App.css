@@ -53,9 +53,8 @@
   background-color: forestgreen;
 }
 
-.btn-yellow {
-  background-color: yellow;
-  color: black;
+.btn-red {
+  background-color: red;
 }
 
 .btn-green:hover {
@@ -64,10 +63,10 @@
   color: forestgreen;
 }
 
-.btn-yellow:hover {
+.btn-red:hover {
   background-color: white;
-  border-color: yellow;
-  color: black;
+  border-color: red;
+  color: red;
 }
 
 .input-container {

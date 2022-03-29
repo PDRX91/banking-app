@@ -26,10 +26,10 @@ const Todo = (props) => {
           {`${props.isCompleted ? "Completed" : "Mark as complete"}`}
         </button>
         <button
-          className="btn todo-button btn-yellow"
-          onClick={() => props.handleDelete()}
+          className="btn todo-button btn-red"
+          onClick={() => props.handleDelete(props.id)}
         >
-          Edit
+          Delete
         </button>
       </div>
     </div>
