@@ -19,6 +19,8 @@ async function run() {
     const movie = await movies.findOne(query);
 
     console.log(movie);
+  } catch (e) {
+    console.error(e);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
@@ -26,28 +28,28 @@ async function run() {
 }
 run().catch(console.dir);
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001;
 
-const app = express();
+// const app = express();
 
-const cors = require("cors");
-const apiRoutes = require("./routes/api");
+// const cors = require("cors");
+// const apiRoutes = require("./routes/api");
 
-var whitelist = ["http://localhost:3000"];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// var whitelist = ["http://localhost:3000"];
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
-// Then pass them to cors:
-app.use(cors(corsOptions));
-app.use("/api", apiRoutes);
+// // Then pass them to cors:
+// app.use(cors(corsOptions));
+// app.use("/api", apiRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server listening on port ${PORT}`);
+// });
