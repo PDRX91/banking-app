@@ -1,55 +1,34 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
 
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri =
-  "mongodb+srv://PDRRoot:bDjoyaBVebSGJ628@cluster0.hj0fu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const PORT = process.env.PORT || 3001;
 
-const client = new MongoClient(uri);
+const app = express();
 
-async function run() {
-  try {
-    await client.connect();
+const cors = require("cors");
+const apiRoutes = require("./routes/api");
+const { mongoConnect } = require("./utils/db");
 
-    const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
+var whitelist = ["http://localhost:3000"];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) {
+      //for bypassing postman req with  no origin
+      return callback(null, true);
+    }
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: "Back to the Future" };
-    const movie = await movies.findOne(query);
+// Then pass them to cors:
+app.use(cors(corsOptions));
+app.use("/api", apiRoutes);
 
-    console.log(movie);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
-
-// const PORT = process.env.PORT || 3001;
-
-// const app = express();
-
-// const cors = require("cors");
-// const apiRoutes = require("./routes/api");
-
-// var whitelist = ["http://localhost:3000"];
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
-
-// // Then pass them to cors:
-// app.use(cors(corsOptions));
-// app.use("/api", apiRoutes);
-
-// app.listen(PORT, () => {
-//   console.log(`Server listening on port ${PORT}`);
-// });
+mongoConnect(() => {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+});

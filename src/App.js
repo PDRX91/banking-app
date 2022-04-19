@@ -3,7 +3,6 @@ import React from "react";
 import Header from "./components/header";
 import TodoContainer from "./components/todoContainer";
 import "./App.css";
-import getRandomInt from "./utils/math";
 
 function App() {
   const todoData = [
